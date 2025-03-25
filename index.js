@@ -572,14 +572,14 @@ function changeFooter(setting) {
     document.querySelector(".copyright").style.display = "flex";
     document.querySelector(".moveUp").style.display = "none";
   } else if (setting === 2) {
-    document.querySelector("footer").style.justifyContent = "flex-end";
+    document.querySelector("footer").style.justifyContent = "space-between";
     document.querySelector(".backToTop").style.display = "none";
-    document.querySelector(".copyright").style.display = "none";
+    document.querySelector(".copyright").style.display = "flex";
     document.querySelector(".moveUp").style.display = "block";
   } else {
-    document.querySelector("footer").style.justifyContent = "flex-end";
+    document.querySelector("footer").style.justifyContent = "space-between";
     document.querySelector(".backToTop").style.display = "none";
-    document.querySelector(".copyright").style.display = "none";
+    document.querySelector(".copyright").style.display = "flex";
     document.querySelector(".moveUp").style.display = "none";
   }
 }
@@ -786,3 +786,17 @@ Array(80).fill().forEach(generateStar);
 generateAirPlane();
 projectResize()
 animate();
+
+// Add scroll event listener for copyright visibility
+window.addEventListener('scroll', () => {
+  const copyright = document.querySelector('.copyright');
+  const scrollPosition = window.scrollY + window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
+  
+  // Show copyright when scrolled to bottom (with a small threshold)
+  if (scrollPosition >= documentHeight - 100) {
+    copyright.classList.add('visible');
+  } else {
+    copyright.classList.remove('visible');
+  }
+});
